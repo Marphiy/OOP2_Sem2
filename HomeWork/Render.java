@@ -18,22 +18,35 @@ final class Render {
         if (object instanceof HasHealthPoint){
             data = ((HasHealthPoint)(object)).getCurrentHealthPoint();
             str = String.format("Уровень жизни %s: %d", ((Base)(object)).getName(), data);
-            printColourByData(data, str);
+            printColourByData(data, str, 0);
         }
         if (object instanceof Tiredness){
             data = ((Tiredness)(object)).getCurrentTiredness();
             str = String.format("Уровень усталости %s: %d", ((Base)(object)).getName(),
             data);
-            printColourByData(data, str);
+            printColourByData(data, str, 1);
             
         }
     }
 
-    private void printColourByData(int data, String str){
+    private void printColourByData(int data, String str, int dir){
+        String col1;
+        String col2;
+        String col3;
 
-        if (data >= 0 && data < 25) str = String.format("\u001B[31m%s\u001B[0m", str);
-        else if (data >= 25 && data < 50) str = String.format("\u001B[34m%s\u001B[0m", str);
-        else if (data >= 50 && data < 100) str = String.format("\u001B[32m%s\u001B[0m", str);
+        if (dir == 0) {
+            col1 = "\u001B[31m";
+            col2 = "\u001B[34m";
+            col3 = "\u001B[32m";
+        }
+        else {
+            col1 = "\u001B[32m";
+            col2 = "\u001B[34m";
+            col3 = "\u001B[31m";
+        }
+        if (data >= 0 && data < 25) str = String.format("%s%s\u001B[0m", col1, str);
+        else if (data >= 25 && data < 50) str = String.format("%s%s\u001B[0m", col2, str);
+        else if (data >= 50 && data < 100) str = String.format("%s%s\u001B[0m", col3, str);
         System.out.println(str);
     }
 }
