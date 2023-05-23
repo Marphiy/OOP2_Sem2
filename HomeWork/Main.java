@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        
+
         List<Object> lst = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
@@ -25,13 +25,9 @@ public class Main {
 
         Render render = new Render();
 
-        for(Object obj : lst){
+        for (Object obj : lst) {
             render.render(obj);
         }
     }
 
-   
-
 }
-
-
